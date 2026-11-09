@@ -1,0 +1,55 @@
+name: Build Low Latency Audio
+
+on:
+  workflow_dispatch: # Чтобы запускать руками по кнопке
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-2022
+
+    steps:
+      - name: Checkout low-latency-audio
+        uses: actions/checkout@v4
+
+      # Вытягиваем готовый ASIO SDK из зеркала
+      - name: Checkout ASIO SDK
+        uses: actions/checkout@v4
+        with:
+          repository: 'audiosdk/asio'
+          path: 'asio-sdk-temp'
+
+      # Раскладываем штейнберговские исходники по фэншую
+      - name: Setup ASIO SDK files
+        shell: pwsh
+        run: |
+          $targetDir = "src/uac2-asio/asio"
+          if (!(Test-Path $targetDir)) {
+              New-Item -ItemType Directory -Force -Path $targetDir
+          }
+          # Копируем всё содержимое папки common
+          Copy-Item -Path "asio-sdk-temp/common/*" -Destination $targetDir -Recurse -Force
+          Write-Host "ASIO files copied successfully to $targetDir"
+          Get-ChildItem $targetDir
+
+      # Запускаем майкрософтовский сборочный скрипт
+      - name: Build Driver and ASIO
+        shell: pwsh
+        run: |
+          .\build\build.ps1 -Configuration Release -Platform x64
+
+      # Забираем готовые бинарники в артефакты
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: LowLatencyAudio-x64-Release
+          path: |
+            artifacts/
+            **/Release/**/*.sys
+            **/Release/**/*.inf
+            **/Release/**/*.cat
+            **/Release/**/*.dll
+            **/Release/**/*.msi
+            **/Release/**/*.exe
+          if-no-files-found: warn
