@@ -1,6 +1,6 @@
 Write-Host "This must be run in a command prompt with MSBuild and other tools paths set. For example, the Developer Command Prompt for VS2022"
 
-$repoRoot = (Resolve-Path "$PSScriptRoot\..").Path
+$repoRoot = (Resolve-Path "$PSScriptRoot\..").Path + "\"
 $stagingFolder = "$repoRoot\build\staging"
 $sourceRoot = $repoRoot + "src\"
 $vsfilesFolder = $sourceRoot + "vsfiles\"
