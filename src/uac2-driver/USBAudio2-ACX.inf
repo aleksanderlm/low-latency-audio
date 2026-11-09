@@ -40,6 +40,7 @@ USBAudio2-ACX.sys  = 1,,
 %USBAudio2-ACX.DeviceDesc%=USBAudio2-ACX_Device, USB\VID_0499&PID_1760        ; Steinberg IXO22
 %USBAudio2-ACX.DeviceDesc%=USBAudio2-ACX_Device, USB\VID_1235&PID_8219&MI_00  ; Focusrite Scarlett 2i2 4th Gen
 %USBAudio2-ACX.DeviceDesc%=USBAudio2-ACX_Device, USB\VID_1235&PID_821B&MI_00  ; Focusrite Scarlett 16i16
+%USBAudio2-ACX.DeviceDesc%=USBAudio2-ACX_Device, USB\VID_1235&PID_8218&MI_00  ; Focusrite Scarlett Solo 4th Gen
 %USBAudio2-ACX.DeviceDesc%=USBAudio2-ACX_Device, USB\VID_194F&PID_060D&MI_00  ; PreSonus Quantum HD 2
 %USBAudio2-ACX.DeviceDesc%=USBAudio2-ACX_Device, USB\VID_194F&PID_0423&MI_00  ; PreSonus Revelator IO 24
 %USBAudio2-ACX.DeviceDesc%=USBAudio2-ACX_Device, USB\VID_194F&PID_0423&MI_03  ; PreSonus Revelator IO 24 Stream Mix A
