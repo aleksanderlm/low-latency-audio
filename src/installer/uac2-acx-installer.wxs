@@ -39,7 +39,7 @@
         <File Source="$(StagingSourceRootFolder)\$(var.Platform)\$(var.Configuration)\USBAsio.pdb" />
         -->
         
-        <File Source="$(StagingSourceRootFolder)\$(var.Platform)\$(var.Configuration)\USBAsioControlPanel.exe" Vital="true" />
+        <File Source="..\..\build\staging\$(var.Platform)\$(var.Configuration)\USBAsioControlPanel.exe" Vital="true" />
 
       </Component>
 
